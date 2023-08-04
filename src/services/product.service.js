@@ -1,4 +1,5 @@
-const {Product} = require('./../models/index')
+const {Product} = require('./../models/index');
+const ApiError = require('./../utils/apiError');
 
 /**
  * Create New Product
@@ -57,7 +58,7 @@ const deleteProductById = async (productId) => {
     }
 
     // Remove product by id
-    Product.findByIdAndDelete(productId);
+    await Product.findByIdAndDelete(productId);
     return product;
 }
 
