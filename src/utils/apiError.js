@@ -7,9 +7,9 @@ class ApiError extends Error {
         this.statusCode = statusCode;
 
         if(stack) {
-
             this.stack = stack;
         } else {
+            // pass stack trace in our this variable and do not show call to our this.constructor in stack trace
             Error.captureStackTrace(this,this.constructor);
         }
     }

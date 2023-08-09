@@ -1,5 +1,7 @@
 const {Product} = require('./../models/index');
 const ApiError = require('./../utils/apiError');
+const catchAsync = require('./../utils/catchAsync');
+const httpStatus = require('http-status');
 
 /**
  * Create New Product
@@ -30,7 +32,7 @@ const getProductById = (productId) => {
  * 
  * @param {ObjectId} productId 
  * @param {Object} updateBody 
- * @returns updatedProduct
+ * @returns success object
  */
 const updateProductById = async (productId, updateBody) => {
     
@@ -38,13 +40,16 @@ const updateProductById = async (productId, updateBody) => {
 
     // If product is undefined
     if(!product) {
-        return {message: "Product not found !!!"}
+        throw new ApiError(httpStatus.NOT_FOUND,"Product not found !!!");
     }
 
     Object.assign(product,updateBody)
-    console.log(product,updateBody)
-    const updatedProduct = await product.save();
-    return updatedProduct
+    
+    await product.save();
+    return {
+        code: httpStatus.OK,
+        message: "Product updated successfully !!!"
+    }
 }
 
 // Delete product by id
@@ -54,12 +59,12 @@ const deleteProductById = async (productId) => {
 
     // If product is undefined
     if(!product) {
-        return {message: "Product not found !!!"}
+        throw new ApiError(httpStatus.NOT_FOUND,"Product not found !!!");
     }
 
     // Remove product by id
     await Product.findByIdAndDelete(productId);
-    return product;
+    return {code: httpStatus.OK,message: "Product deleted successfully !!!"};
 }
 
 module.exports = {
