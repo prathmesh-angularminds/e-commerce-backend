@@ -8,13 +8,16 @@ const httpStatus = require('http-status')
 const catchAsync = require('./utils/catchAsync');
 
 const router = require('./routes/index')
-
+const upload = multer({ dest: "images/" })
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json())
-app.use(multer({dest: 'images/'}).single('image'))
+// app.use(multer({dest: 'images/'}).single('image'))
 
-console.log("Multer: ",multer({dest: 'images/'}).single('image'))
-app.use('/api',router)
+// console.log("Multer: ",) 
+// app.use('/api',router)
+app.use('/api',upload.single('image'),(req,res,next) => {
+    console.log(req.file);
+})
 
 app.use(catchAsync((req,res,next) => {
     console.log("Hello")
