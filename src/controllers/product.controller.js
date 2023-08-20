@@ -6,10 +6,6 @@ const httpStatus = require('http-status');
 // Create a product
 const createProduct = catchAsync(async (req,res) => {
     
-    // console.log("req header: ",req.headers);
-    console.log("Body: ",req.body);
-    console.log("Body: ",req.file);
-
     const product = Object.assign(req.body,{
         createdAt: new Date()
     });
