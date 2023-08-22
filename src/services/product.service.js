@@ -1,8 +1,8 @@
+const {fileService} = require('./index');
 const {Product} = require('./../models/index');
 const ApiError = require('./../utils/apiError');
-const catchAsync = require('./../utils/catchAsync');
+const {uploadMultipleFile} = require('./../utils/uploadFile');
 const httpStatus = require('http-status');
-
 /**
  * Create New Product
  * @param {Object} product 
@@ -10,7 +10,17 @@ const httpStatus = require('http-status');
  */
 const createProduct = (product) => {
 
-    return Product.create(product)
+    console.log(fileService)
+    // uploadMultipleFile(product.images).then((res) => {
+    //     console.log("Hello");
+    //     return fileService.addFiles(res);
+    // }).then((res) => {
+    //     console.log("Res:",res);
+    //     product.images = res
+    //     return Product.create(product)
+    // }).catch((err) => {
+    //     new ApiError(httpStatus.INTERNAL_SERVER_ERROR,"Invalid images")
+    // });
 }
 
 const getProducts = () => {

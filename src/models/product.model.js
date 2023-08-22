@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -16,7 +18,8 @@ const productSchema = new mongoose.Schema({
         type: Date,
     },
     image: {
-        type: [String],
+        type: ObjectId,
+        ref: 'file'
     },
     hasOffer: {
         type: Boolean,

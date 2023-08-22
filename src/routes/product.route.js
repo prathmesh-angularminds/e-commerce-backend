@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
     }
 })
 
+// Filtering files
 const fileFilter = (req,file,cb) => {
 
     // If mimetype includes in the fileTypes list then execute if else execute else statement

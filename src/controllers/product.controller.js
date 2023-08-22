@@ -7,7 +7,8 @@ const httpStatus = require('http-status');
 const createProduct = catchAsync(async (req,res) => {
     
     const product = Object.assign(req.body,{
-        createdAt: new Date()
+        createdAt: new Date(),
+        images: req.files
     });
 
     const newProduct = await productService.createProduct(product);
