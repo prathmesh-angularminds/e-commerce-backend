@@ -12,6 +12,7 @@ const createProduct = catchAsync(async (req,res) => {
     });
 
     const newProduct = await productService.createProduct(product);
+    console.log(newProduct)
     res.status(httpStatus.CREATED).send(newProduct)
 })
 
@@ -46,10 +47,16 @@ const deleteProductById = async (req,res) => {
     res.status(200).send(product);
 }
 
+const deleteProductImageById = async (req,res) => {
+
+    productService.deleteProductImageById(req.query.productId,req.query.imageId);
+}
+
 module.exports = {
     createProduct,
     getProductById,
     getProducts,
     updateProductById,
-    deleteProductById
+    deleteProductById,
+    deleteProductImageById
 }

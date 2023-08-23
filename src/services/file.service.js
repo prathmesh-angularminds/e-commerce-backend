@@ -12,11 +12,10 @@ const addFiles = async (files) => {
     
     let fileIds = [];
     
-    console.log(files);
     for(let file of files) {
-        fileIds.push(await addSingleFile(file)._id);
+        let newFile = await addFile(file);
+        fileIds.push(newFile._id);
     }
-
 
     return fileIds;
 }

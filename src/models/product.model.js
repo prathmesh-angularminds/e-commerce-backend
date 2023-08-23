@@ -17,27 +17,13 @@ const productSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
     },
-    image: {
+    images: [{
         type: ObjectId,
         ref: 'file'
-    },
+    }],
     hasOffer: {
         type: Boolean,
     },
-    // offerDetails: {
-    //     offerPercentage: {
-    //         type: String,
-    //         required: true,
-    //     },
-    //     produc   tOfferPrice: {
-    //         type: Number,
-    //         required: true,
-    //     },
-    //     offerDuration: {
-    //         type: Date,
-    //         require: true
-    //     }
-    // }
 })
 
 const Product = mongoose.model('product',productSchema)
