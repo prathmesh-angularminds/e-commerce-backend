@@ -6,6 +6,7 @@ const errorHandler = (err,req,res,next) => {
 
     res.locals.errorMessage = message;
 
+    console.log("Stack: ",err.stack);
     // response object
     const response = {
         code: statusCode,

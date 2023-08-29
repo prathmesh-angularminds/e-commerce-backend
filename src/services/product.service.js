@@ -10,12 +10,16 @@ const httpStatus = require('http-status');
  */
 const createProduct = (product) => {
 
-    return uploadMultipleFile(product.images).then((res) => {
-        return fileService.addFiles(res);
-    }).then((res) => {
-        product.images = res;
+    return uploadMultipleFile(product.images).then((images) => {
+        product.images = images.map((image) => { 
+            return {
+                public_id: image.public_id,
+                url: image.secure_url
+            }
+        })
         return Product.create(product);
     }).catch((err) => {
+        console.log("Error");
         new ApiError(httpStatus.INTERNAL_SERVER_ERROR,"Invalid images")
     });
 }

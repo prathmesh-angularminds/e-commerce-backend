@@ -18,8 +18,12 @@ const productSchema = new mongoose.Schema({
         type: Date,
     },
     images: [{
-        type: ObjectId,
-        ref: 'file'
+        public_id: {
+            type: String,
+        },
+        url: {
+            type: String
+        }
     }],
     hasOffer: {
         type: Boolean,

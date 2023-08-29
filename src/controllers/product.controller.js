@@ -12,7 +12,6 @@ const createProduct = catchAsync(async (req,res) => {
     });
 
     const newProduct = await productService.createProduct(product);
-    console.log(newProduct)
     res.status(httpStatus.CREATED).send(newProduct)
 })
 
