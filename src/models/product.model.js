@@ -3,6 +3,9 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const productSchema = new mongoose.Schema({
+    orgId: {
+        type: String
+    },
     name: {
         type: String,
         trim: true,
@@ -17,6 +20,9 @@ const productSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
     },
+    productType: {
+        type: String
+    },
     images: [{
         public_id: {
             type: String,
@@ -25,9 +31,14 @@ const productSchema = new mongoose.Schema({
             type: String
         }
     }],
-    hasOffer: {
-        type: Boolean,
-    },
+    review: [
+        {
+            reviewId: ObjectId,
+            ref: 'product-review'
+        }
+    ],
+    // productRating: [
+    // ]
 })
 
 const Product = mongoose.model('product',productSchema)
