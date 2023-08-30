@@ -33,6 +33,9 @@ router.route('/')
     .get(productController.getProducts)
     .post(upload.array('files'),productController.createProduct)
 
+router.route('/generatePdf')
+    .get(productController.createPdf);
+
 router.route('/:productId')
     .get(productController.getProductById)
     .delete(productController.deleteProductById)
