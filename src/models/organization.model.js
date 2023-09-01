@@ -35,5 +35,4 @@ const organizationSchema = new mongoose.Schema({
             required: true,
         }
     },
-    
 })

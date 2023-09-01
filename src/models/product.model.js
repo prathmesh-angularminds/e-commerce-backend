@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const productSchema = new mongoose.Schema({
-    orgId: {
-        type: String
-    },
+    // _org: {
+    //     type: String
+    // },
     name: {
         type: String,
         trim: true,
@@ -31,12 +31,12 @@ const productSchema = new mongoose.Schema({
             type: String
         }
     }],
-    review: [
-        {
-            reviewId: ObjectId,
-            ref: 'product-review'
-        }
-    ],
+    // review: [
+    //     {
+    //         reviewId: ObjectId,
+    //         ref: 'product-review'
+    //     }
+    // ],
     // productRating: [
     // ]
 })
