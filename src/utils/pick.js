@@ -11,7 +11,6 @@ const pick = (object, keys) => {
         if (object && Object.prototype.hasOwnProperty.call(object, key)) {
             obj[key] = object[key]
         }
-
         return obj
     }, {})
 }

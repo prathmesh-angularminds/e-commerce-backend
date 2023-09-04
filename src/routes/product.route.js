@@ -33,24 +33,14 @@ const upload = multer({ storage, fileFilter });
 // Route for /add-new-product path
 router.route('/')
     .get(productController.getProducts)
-    .post(validate(productValidation.createProduct),upload.array('files'), productController.createProduct)
+    .post(upload.array('files'),validate(productValidation.createProduct), productController.createProduct)
 
-router.route('/generatePdf')
-    .get(productController.createPdf);
+// router.route('/generatePdf')
+//     .get(productController.createPdf);
 
 router.route('/:productId')
-    .get(productController.getProductById)
+    .get(validate(productValidation.getProductById),productController.getProductById)
     .delete(productController.deleteProductById)
     .patch(productController.updateProductById)
 
 module.exports = router;
-
-// (req,res,next) => {
-//     const {value,error} = productValidation.createProduct.validate(req.body, {abortEarly: false});
-//     if(error) {
-//         console.log("Error: ",error);
-//     } else {
-//         console.log("Value: ",value);
-//     }
-//     next();
-// }

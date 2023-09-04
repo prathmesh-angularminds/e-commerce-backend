@@ -1,14 +1,22 @@
 const Joi = require('joi');
+const {objectId} = require('./custom.validation');
 
 const createProduct = {
     body: Joi.object({
-        name: Joi.string().min(3).max(30).required(),
-        description: Joi.string().min(3).max(50).required(),
-        price: Joi.number().min(10).max(1000000).required(),
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+        price: Joi.number().integer().min(5).max(100000).required(),
         // productType: Joi.string().required(),
     }) 
 }
 
+const getProductById = {
+    params: Joi.object().keys({
+        productId: Joi.required().custom(objectId)
+    })
+}
+
 module.exports = {
-    createProduct   
+    createProduct,
+    getProductById
 }

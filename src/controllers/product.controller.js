@@ -9,7 +9,7 @@ const fs = require('fs')
 // Create a product
 const createProduct = catchAsync(async (req, res) => {
 
-    createPdf();
+    // createPdf();
 
     const product = Object.assign(req.body, {
         createdAt: new Date(),

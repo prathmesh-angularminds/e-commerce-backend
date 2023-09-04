@@ -1,13 +1,13 @@
 const joi = require('joi')
 const pick = require('../utils/pick');
 const httpStatus = require('http-status');
+const ApiError = require('../utils/apiError');
 
 const validate = (schema) => (req,res,next) => {
     const validSchema = pick(schema,['params','query','body'])
-    console.log(validSchema)
     const object = pick(req,Object.keys(validSchema));
-
-    const {value,error} = joi.compile(validSchema).validate(object);
+    
+    const {value,error} = joi.compile(validSchema).validate(object,{abortEarly: false});
 
     if(error) {
         const errorMessage = error.details.map((detail) => detail.message).join(', ');
